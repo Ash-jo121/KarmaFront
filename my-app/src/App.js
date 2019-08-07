@@ -1,26 +1,46 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Dropdown from './Dropdown3'
+import { BrowserRouter} from 'react-router-dom';
+import S1 from './components/S1'
 
-function App() {
+class App extends React.Component {
+  constructor(){
+    super()
+    this.state={
+      isClicked:true,
+    }
+
+  }
+  
+
+  click(){
+    alert("hello!")
+  }
+
+  render(){
   return (
-    <div className="App">
+    
+      <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        
+          <h1>Attendance</h1> 
+
+     
+          <BrowserRouter>
+            <Dropdown/>
+          </BrowserRouter>
+         
       </header>
     </div>
+    
+    
+   
   );
+  
+  
+  }
 }
 
 export default App;

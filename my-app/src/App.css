@@ -23,6 +23,12 @@
   color: #61dafb;
 }
 
+.ui-button{
+  padding-right: 34;
+  padding-top: 3;
+  background-color:red;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
