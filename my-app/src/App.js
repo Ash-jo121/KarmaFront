@@ -1,9 +1,10 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Home from './Home'
 import Dropdown from './Dropdown3'
+import Navigator from './Navigator'
 import { BrowserRouter} from 'react-router-dom';
-import S1 from './components/S1'
 
 class App extends React.Component {
   constructor(){
@@ -24,12 +25,13 @@ class App extends React.Component {
     
       <div className="App">
       <header className="App-header">
-        
-          <h1>Attendance</h1> 
-
+          
+          <BrowserRouter>
+            <Navigator/>
+          </BrowserRouter>
      
           <BrowserRouter>
-            <Dropdown/>
+            <Home/>
           </BrowserRouter>
          
       </header>

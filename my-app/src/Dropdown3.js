@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import ReactDOM from 'react-dom';
 
-import { Redirect } from 'react-router';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 import S1 from './components/S1';
@@ -51,21 +50,37 @@ showDropdownMenu(event) {
     if(e.target.value == 1){
      this.setState({
         redirectS1:true,
+        
+       redirectS3:false,
+       redirectS5:false,
+       redirectS7:false,
       });
      // alert("1")
     }else if(e.target.value == 3){
       this.setState({
          redirectS3:true,
+
+         redirectS1:false,
+         redirectS5:false,
+         redirectS7:false,
        });
       // alert("1")
      }else if(e.target.value == 5){
       this.setState({
          redirectS5:true,
+         
+       redirectS1:false,
+       redirectS3:false,
+       redirectS7:false,
        });
       // alert("1")
      }else if(e.target.value == 7){
       this.setState({
          redirectS7:true,
+         
+       redirectS1:false,
+       redirectS3:false,
+       redirectS5:false,
        });
       // alert("1")
      }else
@@ -95,10 +110,10 @@ showDropdownMenu(event) {
            <Route exact path='/S3' component={S3} />
            <Route exact path='/S5' component={S5} />
            <Route exact path='/S7' component={S7} />
-           {this.state.redirectS1?<Redirect to="/S1"/>:null}
-           {this.state.redirectS3?<Redirect to="/S3"/>:null}
-           {this.state.redirectS5?<Redirect to="/S5"/>:null}
-           {this.state.redirectS7?<Redirect to="/S7"/>:null}
+           {this.state.redirectS1?<S1/>:null}
+           {this.state.redirectS3?<S3/>:null}
+           {this.state.redirectS5?<S5/>:null}
+           {this.state.redirectS7?<S7/>:null}
         </Switch>
         
 
