@@ -29,10 +29,7 @@ class App extends React.Component {
           <BrowserRouter>
             <Navigator/>
           </BrowserRouter>
-     
-          <BrowserRouter>
-            <Home/>
-          </BrowserRouter>
+      
          
       </header>
     </div>
