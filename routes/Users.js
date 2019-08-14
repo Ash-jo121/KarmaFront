@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 
 const User = require('../models/User')
-const S1 = require('../models/S1')
+//const S1 = require('../models/S1')
 users.use(cors())
 
 process.env.SECRET_KEY = 'secret'
@@ -91,26 +91,29 @@ users.get('/profile', (req, res) => {
     })
 })
 
-users.get('/attendance',(req,res) =>{
-  var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
+users.post('/attendance',(req,res) =>{
+  //var decoded = jwt.verify(req.headers['authorization'], process.env.SECRET_KEY)
 
-  S1.findAll({
-    where:{
-      class : decoded.class
-    }
-  })
-    .then(user => {
-      if(user) {
-        res.json(user)
-        alert('200')
-      } else {
-        res.send('Error in S1')
-      }
-    })
-    .catch(err => {
-      res.send('Eroor : ' +err)
-    })
-})
+ User.findAll({
+   where: {
+     class : req.body.class
+   }
+ })
+   .then(user => {
+     if (user) {
+       console.log(req.body.class)
+       res.json(user)
+     } else {
+       res.send('User does not exist')
+     }
+   })
+   .catch(err => {
+     res.send('error: ' + err)
+   })
+
+});
+
+
 
 users.post('/attendancelogin', (req, res) => {
   S1.findOne({

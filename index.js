@@ -20,3 +20,15 @@ app.use('/users', Users)
 app.listen(port, function() {
   console.log('Server is running on port: ' + port)
 })
+
+
+app.get('/attendance', function (req, res) {
+  connection.connect();
+
+  connection.query('SELECT * FROM users', function (error, results, fields) {
+    if (error) throw error;
+    res.send(results)
+  });
+
+  connection.end();
+});
