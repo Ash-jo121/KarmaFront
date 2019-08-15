@@ -30,7 +30,7 @@ class Navigator extends React.Component {
                 </Link>
              
                 <Link to="/register" className="nav-link">
-                  Register
+                  Admission
                 </Link>
             </nav>
              
@@ -38,6 +38,8 @@ class Navigator extends React.Component {
       
           const userLink = (
             <nav>
+
+                <Link to="/attendance">Attendance</Link>
                 <Link to="/profile" className="nav-link">
                   User
                 </Link>
@@ -55,8 +57,6 @@ class Navigator extends React.Component {
                 <nav>
                     <Link to="/">Dashboard</Link>
                  
-                    <Link to="/attendance">Attendance</Link>
-                    <Link to="/admission">Admission</Link> 
                     {localStorage.usertoken ? userLink : loginRegLink}
 
                 </nav>

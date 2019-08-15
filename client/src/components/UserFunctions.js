@@ -41,4 +41,18 @@ export const attendance = user => {
     })
 }
 
+export const attendanceinput = user => {
+  return axios
+    .put('users/attendanceinput', {
+        name : user.name,
+        attendance_C1:user.attendance,
+        id: user.id
+    })
+    .then(response => {
+      return response.data
+    })
+    .catch(err => {
+      console.log(err)
+    })
+}
 

@@ -96,7 +96,10 @@ users.post('/attendance',(req,res) =>{
 
  User.findAll({
    where: {
-     class : req.body.class
+     class : req.body.class,
+    //  $not :{
+    //    attendance_C1: null
+    //  }
    }
  })
    .then(user => {
@@ -115,19 +118,33 @@ users.post('/attendance',(req,res) =>{
 
 
 
-users.post('/attendancelogin', (req, res) => {
-  S1.findOne({
+users.put('/attendanceinput', (req, res) => {
+  const userData = {
+    first_name:req.body.name,
+    attendance_C1:parseInt(req.body.attendance_C1),
+  }
+  User.findOne({
     where: {
-      name: req.body.name
+      first_name: req.body.name
     }
   })
     .then(user => {
       if (user) {
-       
-          res.send(token)
+        
+        console.log(user)
+        user.update(userData)
+        .then(user1 => {
+          res.json(user1)
+          //console.log(user1)
+        })
+        .catch(err => {
+          res.send('error: ' + err)
+        })
+
+        // user.attendance_C1 = req.body.attendance_C1
         
       } else {
-        res.status(400).json({ error: 'S1 does not exist' })
+        res.status(400).json({ error: 'User does not exist' })
       }
     })
     .catch(err => {

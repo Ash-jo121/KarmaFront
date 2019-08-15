@@ -1,7 +1,7 @@
 import React from 'react';
 import jwt_decode from 'jwt-decode'
 
-import { attendance } from './UserFunctions'
+import { attendance, attendanceinput } from './UserFunctions'
 
 import logo from '../logo.svg';
 import '../App.css';
@@ -15,12 +15,37 @@ class Attendance extends React.Component {
     this.state = {
         name: 'decoded.class',
         attendance: 'ecoded.attendance_C1',
+        id:'',
         class:'',
       tableRows:[],
       errors: {}
       
     }
 
+    this.onChange = this.onChange.bind(this)
+    this.onSubmit = this.onSubmit.bind(this)
+
+  }
+
+  onChange(e) {
+    this.setState({ [e.target.name]: e.target.value })
+  }
+  onSubmit(e) {
+    e.preventDefault()
+
+    const userUpdate = {
+      id: this.state.id,
+      name:this.state.name,
+      attendance: this.state.attendance,
+    }
+
+    attendanceinput(userUpdate).then(res => {
+      if (res) {
+       
+        console.log(res)
+      }
+    
+    })
   }
 
   
@@ -30,7 +55,7 @@ class Attendance extends React.Component {
     const token = localStorage.usertoken
     const decoded = jwt_decode(token)
     this.setState({
-      name: decoded.class,
+      name: decoded.first_name,
       attendance: decoded.attendance_C1,
       class: decoded.class,
     })
@@ -58,9 +83,42 @@ attendance(user).then(res => {
         return (
             <div>
               {this.state.class == 'X'?(
-                
+                    <div>
                     <Dropdown/>
-  
+                    <h3>OR</h3>
+                    <h3>Update Attendance</h3>
+            <form noValidate onSubmit={this.onSubmit}>
+                    <div className="form-group">
+                <label htmlFor="id">ID</label>
+                <input
+                  type="id"
+                  className="form-control"
+                  name="name"
+                  placeholder="Enter email"
+                  value={this.state.name}
+                  onChange={this.onChange}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="name">New Attendance</label>
+                <input
+                  type="attendance"
+                  className="form-control"
+                  name="attendance"
+                  placeholder="Enter your lastname name"
+                  value={this.state.attendance}
+                  onChange={this.onChange}
+                />
+              </div>
+              <button
+                type="submit"
+                className="btn btn-lg btn-primary btn-block"
+              >
+                Update
+              </button>
+              </form>
+
+                    </div>
             ) :
             (
               <div className="jumbotron mt-5">

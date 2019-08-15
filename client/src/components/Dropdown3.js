@@ -161,12 +161,22 @@ showDropdownMenu(event) {
         </tr>
         <tr>
           <td>Attendance</td>
-          <ul>
-           {this.state.posts.map(item => {
-            return <li>{item.attendance_C1}</li>;
-            })}
-          </ul>
+
         </tr>
+           {this.state.posts.map(item => {
+            return (
+              <tr>
+              
+              <td>{item.first_name}</td>
+              {item.attendance_C1 == null ?(
+                <td>0</td>
+              ):(
+                <td>{item.attendance_C1}</td>
+              )}
+            </tr>
+            );
+            })}
+
       </tbody>
     </table>
   </div>
