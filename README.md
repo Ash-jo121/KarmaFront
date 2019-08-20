@@ -4,12 +4,12 @@
 
 In the project directory perform:
 
-###npm install
+### `npm install`
 
-###npm run dev
+### `npm run dev`
 
 In the client app directory perform:
 
-###npm install
+### `npm install`
 
-###npm start
+### `npm start`
